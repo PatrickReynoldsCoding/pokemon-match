@@ -55,7 +55,7 @@ function App() {
     setCards(fullDeck);
   };
 
-  // run shuffleCards to load 16 cards;
+  //Start Game
   useEffect(() => {
     shuffleCards();
     setTimeout(() => {
@@ -74,19 +74,21 @@ function App() {
   useEffect(() => {
     bombCheck(choice1, choice2);
 
-    //end game function if bombCheckw is picked
+    //end game function if bombCheck is picked
   }, [choice1, choice2]);
 
   // checks if the two cards match
 
   // bomb function
   const bombCheck = (choice1, choice2) => {
-    if (choice1) {
-      choice1.bomb ? console.log("game over") : console.log("all good");
+    if (choice1 && choice2 !== null) {
+      if (choice1.bomb && choice2.bomb) gameOver();
     }
-    if (choice2) {
-      choice2.bomb ? console.log("game over") : console.log("all good");
-    }
+  };
+
+  // Game Over funtion
+  const gameOver = () => {
+    alert("Game Over");
   };
   // game start flipper
   const gameStartCardFlipper = () => {
