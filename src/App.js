@@ -14,8 +14,9 @@ function App() {
   const shuffleCards = () => {
     let sixChosenMons = [];
     let usedPokemon = [];
+    let i = 1;
 
-    for (let i = 0; i < 6; i++) {
+    while (sixChosenMons.length < 6) {
       //random number selector between 1-151
       const randPokeSelector = () => {
         let randNum = Math.floor(Math.random() * 145 + i);
@@ -25,52 +26,76 @@ function App() {
       };
 
       let currentPokemon = randPokeSelector();
-
+      console.log(currentPokemon);
       if (!usedPokemon.includes(currentPokemon)) {
         usedPokemon.push(currentPokemon);
         sixChosenMons.push({
           src: `/card_images/${currentPokemon}.png`,
-          matched: true,
+          matched: false,
           bomb: false,
         });
       }
+      i++;
+      // console.log(sixChosenMons);
     }
     let fullDeck = [...sixChosenMons, ...sixChosenMons];
+    // add 4 bombs
     for (let i = 0; i < 4; i++) {
       fullDeck.push({
         src: `/card_images/Teamrockettrio.webp`,
-        matched: true,
+        matched: false,
         bomb: true,
       });
     }
+    // console.log(fullDeck);
+
     fullDeck
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
-    return fullDeck;
+    console.log(fullDeck);
+    setCards(fullDeck);
   };
 
-  // return cardImages;
+  // run shuffleCards to load 16 cards;
   useEffect(() => {
-    setCards(shuffleCards);
+    shuffleCards();
   }, []);
 
+  // load card to choice states
   const handleChoice = (card) => {
-    console.log(card);
+    choice1 ? setChoice2(card) : setChoice1(card);
   };
 
-  console.log(cards);
+  // run match function if 2 cards are picked
+  useEffect(() => {
+    bombCheck(choice1, choice2);
+
+    //end game function if bombCheckw is picked
+  }, [choice1, choice2]);
+
+  // checks if the two cards match
+
+  // bomb function
+  const bombCheck = (choice1, choice2) => {
+    if (choice1) {
+      choice1.bomb ? console.log("game over") : console.log("all good");
+    }
+    if (choice2) {
+      choice2.bomb ? console.log("game over") : console.log("all good");
+    }
+  };
+  // console.log(cards);
+
   return (
     <div className="App">
       <h1>Pokemon Match!</h1>
-      <div>
-        <button onClick={shuffleCards}>New Game</button>
-        <div className="card-grid">
-          {cards.map((card) => (
-            <Card key={card.id} card={card} handleChoice={handleChoice} />
-          ))}
-        </div>
-        {/* <p>Turns : {turns}</p> */}
+      <button onClick={shuffleCards}>New Game</button>
+      <div className="card-grid">
+        {cards.map((card) => (
+          <Card key={Math.random()} card={card} handleChoice={handleChoice} />
+        ))}
       </div>
+      {/* <p>Turns : {turns}</p> */}
     </div>
   );
 }
