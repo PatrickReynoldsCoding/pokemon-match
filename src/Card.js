@@ -7,7 +7,7 @@ export default function Card(props) {
   };
   return (
     <div className="card">
-      <div className="">
+      <div className={props.card.matched ? "flipped" : ""}>
         <img className="front" src={props.card.src} alt="card front" />
         <img
           className="back"

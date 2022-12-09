@@ -26,12 +26,11 @@ function App() {
       };
 
       let currentPokemon = randPokeSelector();
-      console.log(currentPokemon);
       if (!usedPokemon.includes(currentPokemon)) {
         usedPokemon.push(currentPokemon);
         sixChosenMons.push({
           src: `/card_images/${currentPokemon}.png`,
-          matched: false,
+          matched: true,
           bomb: false,
         });
       }
@@ -43,7 +42,7 @@ function App() {
     for (let i = 0; i < 4; i++) {
       fullDeck.push({
         src: `/card_images/Teamrockettrio.webp`,
-        matched: false,
+        matched: true,
         bomb: true,
       });
     }
@@ -52,18 +51,23 @@ function App() {
     fullDeck
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
-    console.log(fullDeck);
+    // console.log(fullDeck);
     setCards(fullDeck);
   };
 
   // run shuffleCards to load 16 cards;
   useEffect(() => {
     shuffleCards();
+    setTimeout(() => {
+      gameStartCardFlipper();
+    }, 2000);
   }, []);
 
   // load card to choice states
   const handleChoice = (card) => {
     choice1 ? setChoice2(card) : setChoice1(card);
+    console.log(choice1);
+    console.log(choice2);
   };
 
   // run match function if 2 cards are picked
@@ -84,7 +88,14 @@ function App() {
       choice2.bomb ? console.log("game over") : console.log("all good");
     }
   };
-  // console.log(cards);
+  // game start flipper
+  const gameStartCardFlipper = () => {
+    setCards((prevCards) => {
+      return prevCards.map((card) => {
+        return { ...card, matched: false };
+      });
+    });
+  };
 
   return (
     <div className="App">
