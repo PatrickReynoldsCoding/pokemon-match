@@ -5,6 +5,7 @@ export default function Card(props) {
   const handleClick = () => {
     if (props.enabled) props.handleChoice(props.card);
   };
+
   return (
     <div className="card">
       <div className={props.flipped ? "flipped" : ""}>
@@ -12,8 +13,8 @@ export default function Card(props) {
         <img
           className="back"
           src="/card_images/cover.png"
-          alt="card back"
           onClick={handleClick}
+          alt="card back"
         />
       </div>
     </div>
