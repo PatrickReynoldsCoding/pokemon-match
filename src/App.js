@@ -9,6 +9,7 @@ function App() {
   const [turns, setTurns] = useState(0);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
+  const [cardEnabler, setCardEnabler] = useState(true);
 
   // random pokemon number generator selector
   const shuffleCards = () => {
@@ -73,15 +74,37 @@ function App() {
   // run match function if 2 cards are picked
   useEffect(() => {
     bombCheck(choice1, choice2);
+    reviewChoices(choice1, choice2);
 
     //end game function if bombCheck is picked
   }, [choice1, choice2]);
 
   // checks if the two cards match
+  const reviewChoices = (choice1, choice2) => {
+    if (choice1 && choice2) {
+      setCardEnabler(false);
+      if (choice1.src === choice2.src) {
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choice1.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+      }
+      setTimeout(() => {
+        setChoice1(null);
+        setChoice2(null);
+        setCardEnabler(true);
+      }, 2000);
+    }
+  };
 
   // bomb function
   const bombCheck = (choice1, choice2) => {
-    if (choice1 && choice2 !== null) {
+    if (choice1 && choice2) {
       if (choice1.bomb && choice2.bomb) gameOver();
     }
   };
@@ -105,7 +128,13 @@ function App() {
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
-          <Card key={Math.random()} card={card} handleChoice={handleChoice} />
+          <Card
+            key={Math.random()}
+            card={card}
+            handleChoice={handleChoice}
+            flipped={card === choice1 || card === choice2 || card.matched}
+            enabled={cardEnabler}
+          />
         ))}
       </div>
       {/* <p>Turns : {turns}</p> */}
