@@ -152,7 +152,7 @@ function App() {
   return (
     <div className="App">
       <h1>Magic Match</h1>
-      <button onClick={shuffleCards}>New Game</button>
+      <button onClick={shuffleCards}>New Game</button> <p>Turns : {turns}</p>
       <div className="card-grid">
         {cards.map((card) => (
           <Card
@@ -164,7 +164,6 @@ function App() {
           />
         ))}
       </div>
-      <p>Turns : {turns}</p>
     </div>
   );
 }
