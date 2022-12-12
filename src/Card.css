@@ -4,7 +4,8 @@
 
 .card img {
   position: block;
-  width: 100%;
+  width: 109.67px;
+  height: auto;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 6px;
   background-color: azure;
@@ -26,6 +27,7 @@
 .card .back {
   transition: all ease-in 0.2s;
   transition-delay: 0.2s;
+  padding: 4px;
 }
 
 .flipped .back {

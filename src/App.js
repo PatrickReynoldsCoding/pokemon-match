@@ -4,15 +4,6 @@ import "./App.css";
 //components
 import Card from "./Card";
 
-const cardImages = [
-  { src: "/img/helmet-1.png", matched: true },
-  { src: "/img/potion-1.png", matched: true },
-  { src: "/img/ring-1.png", matched: true },
-  { src: "/img/scroll-1.png", matched: true },
-  { src: "/img/shield-1.png", matched: true },
-  { src: "/img/sword-1.png", matched: true },
-];
-
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
@@ -52,7 +43,7 @@ function App() {
     // add 4 bombs
     for (let i = 0; i < 4; i++) {
       fullDeck.push({
-        src: `/card_images/Teamrockettrio.webp`,
+        src: `/card_images/Teamrockettrio.png`,
         matched: true,
         bomb: true,
       });
