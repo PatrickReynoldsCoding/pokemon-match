@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 //components
-import Card from "./Card";
+import Card from "./components/Card";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -66,6 +66,11 @@ function App() {
   // remember choice
   const handleChoice = (card) => {
     choice1 ? setChoice2(card) : setChoice1(card);
+    if (card.bomb) {
+      setTimeout(() => {
+        gameOver();
+      }, 500);
+    }
   };
 
   //review choices
