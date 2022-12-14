@@ -1,5 +1,6 @@
 .card {
   position: relative;
+  max-width: 155px;
 }
 
 .card img {
@@ -7,6 +8,7 @@
   width: 100%;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 6px;
+  padding: 2%;
   background-color: azure;
 }
 
@@ -26,7 +28,6 @@
 .card .back {
   transition: all ease-in 0.2s;
   transition-delay: 0.2s;
-  padding: 4px;
 }
 
 .flipped .back {

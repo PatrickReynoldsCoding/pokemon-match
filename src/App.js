@@ -3,6 +3,7 @@ import "./App.css";
 
 //components
 import Card from "./components/Card";
+import GameOverModalContainer from "./components/GameOverModalContainer";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -147,6 +148,7 @@ function App() {
 
   return (
     <div className="App">
+      <GameOverModalContainer />
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button> <p>Turns : {turns}</p>
       <div className="card-grid">

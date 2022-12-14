@@ -1,6 +1,12 @@
 .modal-wrapper {
-  height: 100%;
-  width: 100%;
-  opacity: 0.2;
-  background-color: black;
+  position: absolute;
+  top: 25%;
+  height: 72%;
+  margin: auto;
+  width: 95%;
+  max-width: 675px;
+
+  opacity: 0.9;
+  background-color: rgb(221, 255, 0);
+  z-index: 1;
 }
