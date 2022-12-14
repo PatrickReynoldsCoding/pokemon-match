@@ -11,7 +11,7 @@ function App() {
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [cardEnabler, setCardEnabler] = useState(true);
-  const [isGameOver, setIsGameOver] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(true);
 
   // shuffle cards for new game
   // random pokemon number generator selector

@@ -5,7 +5,23 @@
   width: 95%;
   max-width: 675px;
 
-  opacity: 0.9;
-  background-color: rgb(221, 255, 0);
+  background-color: #f3e7ca;
+  border: 9px solid #ca933a;
+  border-radius: 30px;
   z-index: 1;
+}
+
+.star-container {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  gap: 2%;
+}
+
+.score-star {
+  max-width: 20%;
+}
+
+.score-star-push {
+  transform: translateY(-15%);
 }
