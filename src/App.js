@@ -11,6 +11,7 @@ function App() {
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [cardEnabler, setCardEnabler] = useState(true);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   // shuffle cards for new game
   // random pokemon number generator selector
@@ -99,7 +100,7 @@ function App() {
   // Game Over function
   const gameOver = () => {
     setTimeout(() => {
-      alert("Game Over");
+      setIsGameOver(true);
     }, 1000);
   };
   //match checker
@@ -148,7 +149,7 @@ function App() {
 
   return (
     <div className="App">
-      <GameOverModalContainer />
+      <GameOverModalContainer open={isGameOver} />
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button> <p>Turns : {turns}</p>
       <div className="card-grid">
