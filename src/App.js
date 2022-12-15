@@ -121,7 +121,7 @@ function App() {
     }
   };
 
-  console.log(cards);
+  // console.log(cards);
 
   // clear choices
   const clearChoices = (choice1, choice2) => {
@@ -155,7 +155,7 @@ function App() {
       <div className="card-grid">
         {cards.map((card) => (
           <Card
-            key={card.id}
+            key={Math.random()}
             handleChoice={handleChoice}
             card={card}
             flipped={card === choice1 || card === choice2 || card.matched}

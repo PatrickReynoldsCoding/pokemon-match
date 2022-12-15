@@ -7,7 +7,7 @@ export default function GameOverModal(props) {
   if (!props.open) return null;
   return (
     <div className="modal-wrapper">
-      <ScoreStar score={3} />
+      <ScoreStar score={20} />
     </div>
   );
 }
