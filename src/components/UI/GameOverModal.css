@@ -11,6 +11,26 @@
   z-index: 1;
 }
 
+.bounce {
+  animation: bounce 1s ease;
+}
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .star-container {
   display: flex;
   grid-template-columns: 1fr 1fr 1fr;
@@ -24,13 +44,18 @@
 
 .filled-stars {
   position: absolute;
-  animation: appear 4s;
-  animation: pop 0.5s linear 1;
+  visibility: hidden;
+  animation: pop 0.8s forwards 1;
+  animation-delay: 1s;
 }
 
 @keyframes pop {
   40% {
     transform: scale(1.2);
+    visibility: visible;
+  }
+  100% {
+    visibility: visible;
   }
 }
 
