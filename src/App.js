@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 //components
-import Card from "./Card";
+import Card from "./components/GameAssets/Card";
+import GameOverModal from "./components/UI/GameOverModal";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -10,6 +11,8 @@ function App() {
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [cardEnabler, setCardEnabler] = useState(true);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [errorCounter, setErrorCounter] = useState(0);
 
   // shuffle cards for new game
   // random pokemon number generator selector
@@ -66,6 +69,11 @@ function App() {
   // remember choice
   const handleChoice = (card) => {
     choice1 ? setChoice2(card) : setChoice1(card);
+    if (card.bomb) {
+      setTimeout(() => {
+        gameOver();
+      }, 500);
+    }
   };
 
   //review choices
@@ -78,7 +86,7 @@ function App() {
       bombCheck(choice1, choice2);
       matchChecker(choice1, choice2);
       setTimeout(() => clearChoices(choice1, choice2), 1000);
-
+      console.log(errorCounter);
       setTurns(turns + 1);
       // console.log(choice1, choice2, turns);
     }
@@ -93,7 +101,7 @@ function App() {
   // Game Over function
   const gameOver = () => {
     setTimeout(() => {
-      alert("Game Over");
+      setIsGameOver(true);
     }, 1000);
   };
   //match checker
@@ -110,11 +118,15 @@ function App() {
             }
           });
         });
+      } else {
+        setErrorCounter((prevCount) => {
+          return prevCount + 1;
+        });
       }
     }
   };
 
-  console.log(cards);
+  // console.log(cards);
 
   // clear choices
   const clearChoices = (choice1, choice2) => {
@@ -142,12 +154,13 @@ function App() {
 
   return (
     <div className="App">
+      <GameOverModal open={isGameOver} />
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button> <p>Turns : {turns}</p>
       <div className="card-grid">
         {cards.map((card) => (
           <Card
-            key={card.id}
+            key={Math.random()}
             handleChoice={handleChoice}
             card={card}
             flipped={card === choice1 || card === choice2 || card.matched}

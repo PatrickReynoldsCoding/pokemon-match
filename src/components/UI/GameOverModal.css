@@ -1,0 +1,64 @@
+.modal-wrapper {
+  position: absolute;
+  top: 25%;
+  height: 72%;
+  width: 95%;
+  max-width: 675px;
+
+  background-color: #f3e7ca;
+  border: 9px solid #ca933a;
+  border-radius: 30px;
+  z-index: 1;
+}
+
+.bounce {
+  animation: bounce 1s ease;
+}
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.star-container {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  gap: 2%;
+}
+
+.score-star {
+  max-width: 20%;
+}
+
+.filled-stars {
+  position: absolute;
+  visibility: hidden;
+  animation: pop 0.8s forwards 1;
+  animation-delay: 1s;
+}
+
+@keyframes pop {
+  40% {
+    transform: scale(1.2);
+    visibility: visible;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+.score-star-push {
+  transform: translateY(-15%);
+}

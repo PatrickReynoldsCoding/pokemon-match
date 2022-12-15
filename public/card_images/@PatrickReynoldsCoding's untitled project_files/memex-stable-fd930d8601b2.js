@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk=globalThis.webpackChunk||[]).push([["memex-stable"],{58229(a,b,c){c(6660)}},a=>{var b=b=>a(a.s=b);a.O(0,["vendors-node_modules_memex-frontend-stable_dist_client_app_bundle_js"],()=>b(58229));var c=a.O()}])
