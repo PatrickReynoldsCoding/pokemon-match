@@ -11,7 +11,8 @@ function App() {
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [cardEnabler, setCardEnabler] = useState(true);
-  const [isGameOver, setIsGameOver] = useState(true);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [errorCounter, setErrorCounter] = useState(0);
 
   // shuffle cards for new game
   // random pokemon number generator selector
@@ -85,7 +86,7 @@ function App() {
       bombCheck(choice1, choice2);
       matchChecker(choice1, choice2);
       setTimeout(() => clearChoices(choice1, choice2), 1000);
-
+      console.log(errorCounter);
       setTurns(turns + 1);
       // console.log(choice1, choice2, turns);
     }
@@ -116,6 +117,10 @@ function App() {
               return card;
             }
           });
+        });
+      } else {
+        setErrorCounter((prevCount) => {
+          return prevCount + 1;
         });
       }
     }
