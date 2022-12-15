@@ -22,6 +22,10 @@
   max-width: 20%;
 }
 
+.filled-stars {
+  position: absolute;
+}
+
 .score-star-push {
   transform: translateY(-15%);
 }

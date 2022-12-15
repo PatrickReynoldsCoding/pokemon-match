@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 //components
-import Card from "./components/Card";
-import GameOverModalContainer from "./components/GameOverModalContainer";
+import Card from "./components/GameAssets/Card";
+import GameOverModal from "./components/UI/GameOverModal";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -149,7 +149,7 @@ function App() {
 
   return (
     <div className="App">
-      <GameOverModalContainer open={isGameOver} />
+      <GameOverModal open={isGameOver} />
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button> <p>Turns : {turns}</p>
       <div className="card-grid">

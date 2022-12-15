@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  <script defer="" src="./React App_files/bundle.js"></script><style>.App {
+  max-width: 675px;
+  margin: 0% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button {
+  background: none;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+}
+button:hover {
+  background: #c23866;
+  color: #fff;
+}
+
+.card-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 0.2% 2.5%;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9BcHAuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGVBQWU7RUFDZixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLHNCQUFzQjtFQUN0QixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxpQkFBaUI7RUFDakIsZUFBZTtFQUNmLGNBQWM7QUFDaEI7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsYUFBYTtFQUNiLHNDQUFzQztFQUN0QyxtQkFBbUI7QUFDckIiLCJzb3VyY2VzQ29udGVudCI6WyIuQXBwIHtcbiAgbWF4LXdpZHRoOiA2NzVweDtcbiAgbWFyZ2luOiAwJSBhdXRvO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuYnV0dG9uIHtcbiAgYmFja2dyb3VuZDogbm9uZTtcbiAgYm9yZGVyOiAycHggc29saWQgI2ZmZjtcbiAgcGFkZGluZzogNnB4IDEycHg7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgY29sb3I6ICNmZmY7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGZvbnQtc2l6ZTogMWVtO1xufVxuYnV0dG9uOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogI2MyMzg2NjtcbiAgY29sb3I6ICNmZmY7XG59XG5cbi5jYXJkLWdyaWQge1xuICBtYXJnaW4tdG9wOiA0MHB4O1xuICBkaXNwbGF5OiBncmlkO1xuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnIgMWZyIDFmcjtcbiAgZ3JpZC1nYXA6IDAuMiUgMi41JTtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */</style><style>.card {
+  position: relative;
+  max-width: 155px;
+}
+
+.card img {
+  position: block;
+  width: 100%;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  padding: 2%;
+  background-color: azure;
+}
+
+/* front of card - the picture */
+.card .front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+}
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+/* back of card - the cover */
+
+.card .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL0NhcmQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLGVBQWU7RUFDZixXQUFXO0VBQ1gsOEJBQThCO0VBQzlCLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsdUJBQXVCO0FBQ3pCOztBQUVBLGdDQUFnQztBQUNoQztFQUNFLHlCQUF5QjtFQUN6Qiw0QkFBNEI7RUFDNUIsa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSx3QkFBd0I7RUFDeEIsc0JBQXNCO0FBQ3hCOztBQUVBLDZCQUE2Qjs7QUFFN0I7RUFDRSw0QkFBNEI7RUFDNUIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UseUJBQXlCO0VBQ3pCLG9CQUFvQjtBQUN0QiIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBtYXgtd2lkdGg6IDE1NXB4O1xufVxuXG4uY2FyZCBpbWcge1xuICBwb3NpdGlvbjogYmxvY2s7XG4gIHdpZHRoOiAxMDAlO1xuICBib3JkZXI6IDJweCBzb2xpZCByZ2IoMCwgMCwgMCk7XG4gIGJvcmRlci1yYWRpdXM6IDZweDtcbiAgcGFkZGluZzogMiU7XG4gIGJhY2tncm91bmQtY29sb3I6IGF6dXJlO1xufVxuXG4vKiBmcm9udCBvZiBjYXJkIC0gdGhlIHBpY3R1cmUgKi9cbi5jYXJkIC5mcm9udCB7XG4gIHRyYW5zZm9ybTogcm90YXRlWSg5MGRlZyk7XG4gIHRyYW5zaXRpb246IGFsbCBlYXNlLWluIDAuMnM7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbn1cbi5mbGlwcGVkIC5mcm9udCB7XG4gIHRyYW5zZm9ybTogcm90YXRlWSgwZGVnKTtcbiAgdHJhbnNpdGlvbi1kZWxheTogMC4ycztcbn1cblxuLyogYmFjayBvZiBjYXJkIC0gdGhlIGNvdmVyICovXG5cbi5jYXJkIC5iYWNrIHtcbiAgdHJhbnNpdGlvbjogYWxsIGVhc2UtaW4gMC4ycztcbiAgdHJhbnNpdGlvbi1kZWxheTogMC4ycztcbn1cblxuLmZsaXBwZWQgLmJhY2sge1xuICB0cmFuc2Zvcm06IHJvdGF0ZVkoOTBkZWcpO1xuICB0cmFuc2l0aW9uLWRlbGF5OiAwcztcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */</style><style>.modal-wrapper {
+  position: absolute;
+  top: 25%;
+  height: 72%;
+  width: 95%;
+  max-width: 675px;
+
+  background-color: #f3e7ca;
+  border: 9px solid #ca933a;
+  border-radius: 30px;
+  z-index: 1;
+}
+
+.star-container {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  gap: 2%;
+}
+
+.score-star {
+  max-width: 20%;
+}
+
+.score-star-push {
+  transform: translateY(-15%);
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL0dhbWVPdmVyTW9kYWwuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixXQUFXO0VBQ1gsVUFBVTtFQUNWLGdCQUFnQjs7RUFFaEIseUJBQXlCO0VBQ3pCLHlCQUF5QjtFQUN6QixtQkFBbUI7RUFDbkIsVUFBVTtBQUNaOztBQUVBO0VBQ0UsYUFBYTtFQUNiLGtDQUFrQztFQUNsQyx1QkFBdUI7RUFDdkIsT0FBTztBQUNUOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTtFQUNFLDJCQUEyQjtBQUM3QiIsInNvdXJjZXNDb250ZW50IjpbIi5tb2RhbC13cmFwcGVyIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDI1JTtcbiAgaGVpZ2h0OiA3MiU7XG4gIHdpZHRoOiA5NSU7XG4gIG1heC13aWR0aDogNjc1cHg7XG5cbiAgYmFja2dyb3VuZC1jb2xvcjogI2YzZTdjYTtcbiAgYm9yZGVyOiA5cHggc29saWQgI2NhOTMzYTtcbiAgYm9yZGVyLXJhZGl1czogMzBweDtcbiAgei1pbmRleDogMTtcbn1cblxuLnN0YXItY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyIDFmcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGdhcDogMiU7XG59XG5cbi5zY29yZS1zdGFyIHtcbiAgbWF4LXdpZHRoOiAyMCU7XG59XG5cbi5zY29yZS1zdGFyLXB1c2gge1xuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTE1JSk7XG59XG4iXSwic291cmNlUm9vdCI6IiJ9 */</style><style>@import url(https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap);</style><style>/* base styles */
+body {
+  font-family: Raleway, sans-serif;
+  margin: 0;
+  font-size: 1.5em;
+  text-align: center;
+  background: #011777;
+  color: #fff;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9pbmRleC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUEsZ0JBQWdCO0FBQ2hCO0VBQ0UsZ0NBQWdDO0VBQ2hDLFNBQVM7RUFDVCxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixXQUFXO0FBQ2IiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybChcImh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9UmFsZXdheTp3Z2h0QDEwMDsyMDA7MzAwOzQwMDs1MDA7NjAwOzcwMDs4MDAmZGlzcGxheT1zd2FwXCIpO1xuXG4vKiBiYXNlIHN0eWxlcyAqL1xuYm9keSB7XG4gIGZvbnQtZmFtaWx5OiBSYWxld2F5LCBzYW5zLXNlcmlmO1xuICBtYXJnaW46IDA7XG4gIGZvbnQtc2l6ZTogMS41ZW07XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgYmFja2dyb3VuZDogIzAxMTc3NztcbiAgY29sb3I6ICNmZmY7XG59XG4iXSwic291cmNlUm9vdCI6IiJ9 */</style></head>
+  <body class="vsc-initialized">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div class="App"><div class="modal-wrapper"><div class="star-container"><img class="score-star" src="./React App_files/star.png" alt=""><img class="score-star score-star-push" src="./React App_files/star.png" alt=""><img class="score-star" src="./React App_files/star.png" alt=""></div></div><h1>Magic Match</h1><button>New Game</button> <p>Turns : 0</p><div class="card-grid"><div class="card"><div class=""><img class="front" src="./React App_files/Teamrockettrio.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/059.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/071.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/071.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/063.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/063.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/121.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/082.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/082.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/121.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/059.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/Teamrockettrio.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/143.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/143.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/Teamrockettrio.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div><div class="card"><div class=""><img class="front" src="./React App_files/Teamrockettrio.png" alt="card front"><img class="back" src="./React App_files/cover.png" alt="card back"></div></div></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  
+
+</body></html>
