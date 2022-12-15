@@ -154,7 +154,7 @@ function App() {
 
   return (
     <div className="App">
-      <GameOverModal open={isGameOver} />
+      <GameOverModal open={isGameOver} score={20 - errorCounter} />
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button> <p>Turns : {turns}</p>
       <div className="card-grid">

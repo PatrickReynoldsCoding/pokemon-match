@@ -8,6 +8,10 @@ export default function GameOverModal(props) {
   return (
     <div className="modal-wrapper bounce">
       <ScoreStar score={20} />
+      <div className="endgame-text">
+        <p>Your Score is {props.score}</p>
+        <p>You made {20 - props.score} errors</p>
+      </div>
     </div>
   );
 }

@@ -10,7 +10,9 @@
   border-radius: 30px;
   z-index: 1;
 }
-
+.endgame-text {
+  color: black;
+}
 .bounce {
   animation: bounce 1s ease;
 }
