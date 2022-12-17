@@ -1,10 +1,9 @@
 .modal-wrapper {
   position: absolute;
-  top: 25%;
+  top: 20%;
   height: 72%;
   width: 95%;
   max-width: 675px;
-
   background-color: #f3e7ca;
   border: 9px solid #ca933a;
   border-radius: 30px;
@@ -13,6 +12,7 @@
 .endgame-text {
   padding-top: 10%;
   color: black;
+  font-size: larger;
 }
 .bounce {
   animation: bounce 1s ease;
@@ -34,8 +34,13 @@
   }
 }
 
+.game-over-banner {
+  width: auto;
+  height: 30%;
+  margin: -15% 0 0 -5%;
+}
 .star-container {
-  margin-top: 30%;
+  margin-top: 11%;
   display: flex;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
