@@ -7,12 +7,15 @@ import GameOverModal from "./components/UI/GameOverModal";
 
 function App() {
   const [cards, setCards] = useState([]);
-  const [turns, setTurns] = useState(0);
+  // const [turns, setTurns] = useState(0);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [cardEnabler, setCardEnabler] = useState(true);
   const [isGameOver, setIsGameOver] = useState(false);
+
+  const [matches, setMatches] = useState(0);
   const [errorCounter, setErrorCounter] = useState(0);
+  const [bomb, setBomb] = useState(false);
 
   // shuffle cards for new game
   // random pokemon number generator selector
@@ -20,6 +23,7 @@ function App() {
     let sixChosenMons = [];
     let usedPokemon = [];
     let i = 1;
+    setIsGameOver(false);
 
     while (sixChosenMons.length < 6) {
       //random number selector between 1-151
@@ -60,10 +64,13 @@ function App() {
     setChoice1(null);
     setChoice2(null);
     setCards(fullDeck);
-    setTurns(0);
+    setErrorCounter(0);
+    setMatches(0);
+    setBomb(0);
+    // setTurns(0);
     setTimeout(() => {
       gameStartCardFlipper();
-    }, 5000);
+    }, 1000);
   };
 
   // remember choice
@@ -87,14 +94,17 @@ function App() {
       matchChecker(choice1, choice2);
       setTimeout(() => clearChoices(choice1, choice2), 1000);
       console.log(errorCounter);
-      setTurns(turns + 1);
+      // setTurns(turns + 1);
       // console.log(choice1, choice2, turns);
     }
   };
   // bomb function
   const bombCheck = (choice1, choice2) => {
     if (choice1 && choice2) {
-      if (choice1.bomb && choice2.bomb) gameOver();
+      if (choice1.bomb && choice2.bomb) {
+        gameOver();
+        setBomb(true);
+      }
     }
   };
 
@@ -104,11 +114,16 @@ function App() {
       setIsGameOver(true);
     }, 1000);
   };
+
+  useEffect(() => {
+    if (matches === 6) gameOver(true);
+  }, [matches]);
   //match checker
   const matchChecker = (choice1, choice2) => {
     if (choice1 && choice2) {
       setCardEnabler(false);
       if (choice1.src === choice2.src) {
+        setMatches(matches + 1);
         setCards((prevCards) => {
           return prevCards.map((card) => {
             if (card.src === choice1.src) {
@@ -126,7 +141,7 @@ function App() {
     }
   };
 
-  // console.log(cards);
+  console.log(matches);
 
   // clear choices
   const clearChoices = (choice1, choice2) => {
@@ -154,9 +169,16 @@ function App() {
 
   return (
     <div className="App">
-      <GameOverModal open={isGameOver} />
-      <h1>Magic Match</h1>
-      <button onClick={shuffleCards}>New Game</button> <p>Turns : {turns}</p>
+      <GameOverModal
+        open={isGameOver}
+        score={bomb ? 20 - errorCounter : 20 - errorCounter - 11 + matches}
+        errors={errorCounter}
+        matches={matches}
+        bomb={bomb}
+      />
+      <h1>Pokemon Pairs!</h1>
+      <button onClick={shuffleCards}>New Game</button>
+      {/* <p>Turns : {turns}</p> */}
       <div className="card-grid">
         {cards.map((card) => (
           <Card
