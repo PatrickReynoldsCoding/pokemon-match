@@ -70,7 +70,7 @@ function App() {
     // setTurns(0);
     setTimeout(() => {
       gameStartCardFlipper();
-    }, 10000);
+    }, 1000);
   };
 
   // remember choice

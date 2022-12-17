@@ -1,6 +1,7 @@
 .App {
   max-width: 675px;
   margin: 0% auto;
+  padding: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
