@@ -6,6 +6,7 @@ export default function ScoreStars(props) {
     if (score > 18 && score <= 20) return 3;
     if (score > 15 && score <= 17) return 2;
     if (score >= 10 && score <= 15) return 1;
+    if (score < 10) return 0;
   };
   useEffect(() => {
     setStars(starCalculator(props.score));
