@@ -2,6 +2,9 @@ import React from "react";
 
 import "./PokeDexModal.css";
 
+// components
+import PokeDexAllMons from "./PokeDexAllMons";
+
 export default function PokedexModal(props) {
   if (!props.open) return null;
   return (
@@ -10,7 +13,7 @@ export default function PokedexModal(props) {
         <div className="pokedex-screen">
           {/* *** add green pixitaled filter */}
         </div>
-        <div className="all-mons-wrapper"></div>
+        <PokeDexAllMons />
       </div>
     </div>
   );
