@@ -5,12 +5,22 @@ import "./GameOverModal.css";
 
 export default function GameOverModal(props) {
   let matchedPokemon = [];
+
   const pokeCatcher = () => {
     props.cards.map((card) => {
       if (card.matched)
         matchedPokemon.push(`${card.src[13]}${card.src[14]}${card.src[15]}`);
+      // *** only push if unique
     });
   };
+
+  const pokePicker = (possibleMons) => {
+    // *** enter code for pulling images
+    // if 1 match then "you caught ${matchedPokemon.name}"
+    // if 6 match then "Wow you caught all 6 pokemon"
+    // if 2 stars then you get to pick 3 pokemon
+  };
+
   if (!props.open) return null;
   return (
     <div className="game-over-modal-container">
