@@ -22,37 +22,46 @@ function App() {
     let i = 1;
     setIsGameOver(false);
 
-    while (sixChosenMons.length < 6) {
-      //random number selector between 1-151
-      const randPokeSelector = () => {
-        let randNum = Math.floor(Math.random() * 145 + i);
-        if (randNum.toString().length === 3) return randNum.toString();
-        if (randNum.toString().length === 2) return `0${randNum}`;
-        if (randNum.toString().length === 1) return `00${randNum}`;
-      };
+    const sixRandomMons = (pokemonArrayToFill) => {
+      while (sixChosenMons.length < 6) {
+        //random number selector between 1-151
+        const randPokeSelector = () => {
+          let randNum = Math.floor(Math.random() * 145 + i);
+          if (randNum.toString().length === 3) return randNum.toString();
+          if (randNum.toString().length === 2) return `0${randNum}`;
+          if (randNum.toString().length === 1) return `00${randNum}`;
+        };
 
-      let currentPokemon = randPokeSelector();
-      if (!usedPokemon.includes(currentPokemon)) {
-        usedPokemon.push(currentPokemon);
-        sixChosenMons.push({
-          src: `/card_images/${currentPokemon}.png`,
+        let currentPokemon = randPokeSelector();
+        if (!usedPokemon.includes(currentPokemon)) {
+          usedPokemon.push(currentPokemon);
+          sixChosenMons.push({
+            src: `/card_images/${currentPokemon}.png`,
+            matched: true,
+            bomb: false,
+          });
+        }
+        i++;
+        // console.log(sixChosenMons);
+      }
+    };
+
+    sixRandomMons(sixChosenMons);
+
+    let fullDeck = [...sixChosenMons, ...sixChosenMons];
+
+    // add 4 bombs
+    const bombAdder = (deck) => {
+      for (let i = 0; i < 4; i++) {
+        deck.push({
+          src: `/card_images/Teamrockettrio.png`,
           matched: true,
-          bomb: false,
+          bomb: true,
         });
       }
-      i++;
-      // console.log(sixChosenMons);
-    }
-    let fullDeck = [...sixChosenMons, ...sixChosenMons];
-    // add 4 bombs
-    for (let i = 0; i < 4; i++) {
-      fullDeck.push({
-        src: `/card_images/Teamrockettrio.png`,
-        matched: true,
-        bomb: true,
-      });
-    }
-    // console.log(fullDeck);
+    };
+
+    bombAdder(fullDeck);
 
     fullDeck
       .sort(() => Math.random() - 0.5)
@@ -66,7 +75,7 @@ function App() {
     setBomb(0);
     setTimeout(() => {
       gameStartCardFlipper();
-    }, 1000);
+    }, 10000);
   };
 
   // remember choice
@@ -166,7 +175,7 @@ function App() {
     <div className="App">
       <GameOverModal
         open={isGameOver}
-        score={bomb ? 20 - errorCounter : 20 - errorCounter - 11 + matches}
+        score={matches * 3 - errorCounter}
         errors={errorCounter}
         matches={matches}
         bomb={bomb}
