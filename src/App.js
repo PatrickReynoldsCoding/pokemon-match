@@ -7,18 +7,15 @@ import GameOverModal from "./components/UI/GameOverModal";
 
 function App() {
   const [cards, setCards] = useState([]);
-  // const [turns, setTurns] = useState(0);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [cardEnabler, setCardEnabler] = useState(true);
   const [isGameOver, setIsGameOver] = useState(false);
-
   const [matches, setMatches] = useState(0);
   const [errorCounter, setErrorCounter] = useState(0);
   const [bomb, setBomb] = useState(false);
 
   // shuffle cards for new game
-  // random pokemon number generator selector
   const shuffleCards = () => {
     let sixChosenMons = [];
     let usedPokemon = [];
@@ -67,7 +64,6 @@ function App() {
     setErrorCounter(0);
     setMatches(0);
     setBomb(0);
-    // setTurns(0);
     setTimeout(() => {
       gameStartCardFlipper();
     }, 1000);
@@ -82,11 +78,22 @@ function App() {
       }, 500);
     }
   };
+  // Game Over function
+  const gameOver = () => {
+    setTimeout(() => {
+      setIsGameOver(true);
+    }, 1000);
+  };
 
   //review choices
   useEffect(() => {
     reviewChoices(choice1, choice2);
   }, [choice1, choice2]);
+
+  //End Game after 6 matches are made
+  useEffect(() => {
+    if (matches === 6) gameOver(true);
+  }, [matches]);
 
   const reviewChoices = (choice1, choice2) => {
     if (choice1 && choice2) {
@@ -108,16 +115,6 @@ function App() {
     }
   };
 
-  // Game Over function
-  const gameOver = () => {
-    setTimeout(() => {
-      setIsGameOver(true);
-    }, 1000);
-  };
-
-  useEffect(() => {
-    if (matches === 6) gameOver(true);
-  }, [matches]);
   //match checker
   const matchChecker = (choice1, choice2) => {
     if (choice1 && choice2) {
@@ -140,8 +137,6 @@ function App() {
       }
     }
   };
-
-  console.log(matches);
 
   // clear choices
   const clearChoices = (choice1, choice2) => {
@@ -182,7 +177,7 @@ function App() {
       <div className="card-grid">
         {cards.map((card) => (
           <Card
-            key={Math.random()}
+            key={card.id}
             handleChoice={handleChoice}
             card={card}
             flipped={card === choice1 || card === choice2 || card.matched}
