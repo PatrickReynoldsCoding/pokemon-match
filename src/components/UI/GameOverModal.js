@@ -24,7 +24,7 @@ export default function GameOverModal(props) {
   if (!props.open) return null;
   return (
     <div className="game-over-modal-container">
-      <div className="game-over-modal-wrapper bounce">
+      <div className="game-over-modal-wrapper bounce-from-top">
         <img
           className="game-over-banner"
           src="./img/game-over-banner.png"

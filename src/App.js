@@ -4,6 +4,7 @@ import "./App.css";
 //components
 import Card from "./components/GameAssets/Card";
 import GameOverModal from "./components/UI/GameOverModal";
+import PokedexModal from "./components/UI/PokeDexModal";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -166,6 +167,7 @@ function App() {
 
   return (
     <div className="App">
+      <PokedexModal open={true} />
       <GameOverModal
         open={isGameOver}
         score={matches * 3 - errorCounter}
