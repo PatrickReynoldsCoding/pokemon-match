@@ -15,52 +15,14 @@ function App() {
   const [errorCounter, setErrorCounter] = useState(0);
   const [bomb, setBomb] = useState(false);
 
+  let sixChosenMons = [];
+  let usedPokemon = [];
+
   // shuffle cards for new game
   const shuffleCards = () => {
-    let sixChosenMons = [];
-    let usedPokemon = [];
-    let i = 1;
     setIsGameOver(false);
-
-    const sixRandomMons = (pokemonArrayToFill) => {
-      while (sixChosenMons.length < 6) {
-        //random number selector between 1-151
-        const randPokeSelector = () => {
-          let randNum = Math.floor(Math.random() * 145 + i);
-          if (randNum.toString().length === 3) return randNum.toString();
-          if (randNum.toString().length === 2) return `0${randNum}`;
-          if (randNum.toString().length === 1) return `00${randNum}`;
-        };
-
-        let currentPokemon = randPokeSelector();
-        if (!usedPokemon.includes(currentPokemon)) {
-          usedPokemon.push(currentPokemon);
-          sixChosenMons.push({
-            src: `/card_images/${currentPokemon}.png`,
-            matched: true,
-            bomb: false,
-          });
-        }
-        i++;
-        // console.log(sixChosenMons);
-      }
-    };
-
     sixRandomMons(sixChosenMons);
-
     let fullDeck = [...sixChosenMons, ...sixChosenMons];
-
-    // add 4 bombs
-    const bombAdder = (deck) => {
-      for (let i = 0; i < 4; i++) {
-        deck.push({
-          src: `/card_images/Teamrockettrio.png`,
-          matched: true,
-          bomb: true,
-        });
-      }
-    };
-
     bombAdder(fullDeck);
 
     fullDeck
@@ -75,9 +37,44 @@ function App() {
     setBomb(0);
     setTimeout(() => {
       gameStartCardFlipper();
-    }, 10000);
+    }, 1000);
   };
 
+  const sixRandomMons = (pokemonArrayToFill) => {
+    let i = 1;
+    while (sixChosenMons.length < 6) {
+      //random number selector between 1-151
+      const randPokeSelector = () => {
+        let randNum = Math.floor(Math.random() * 145 + i);
+        if (randNum.toString().length === 3) return randNum.toString();
+        if (randNum.toString().length === 2) return `0${randNum}`;
+        if (randNum.toString().length === 1) return `00${randNum}`;
+      };
+
+      let currentPokemon = randPokeSelector();
+      if (!usedPokemon.includes(currentPokemon)) {
+        usedPokemon.push(currentPokemon);
+        sixChosenMons.push({
+          src: `/card_images/${currentPokemon}.png`,
+          matched: true,
+          bomb: false,
+        });
+      }
+      i++;
+      // console.log(sixChosenMons);
+    }
+  };
+
+  // add 4 bombs
+  const bombAdder = (deck) => {
+    for (let i = 0; i < 4; i++) {
+      deck.push({
+        src: `/card_images/Teamrockettrio.png`,
+        matched: true,
+        bomb: true,
+      });
+    }
+  };
   // remember choice
   const handleChoice = (card) => {
     choice1 ? setChoice2(card) : setChoice1(card);
@@ -94,6 +91,11 @@ function App() {
     }, 1000);
   };
 
+  // starts first game automatically
+  useEffect(() => {
+    shuffleCards(sixChosenMons, usedPokemon);
+  }, []);
+
   //review choices
   useEffect(() => {
     reviewChoices(choice1, choice2);
@@ -109,9 +111,6 @@ function App() {
       bombCheck(choice1, choice2);
       matchChecker(choice1, choice2);
       setTimeout(() => clearChoices(choice1, choice2), 1000);
-      console.log(errorCounter);
-      // setTurns(turns + 1);
-      // console.log(choice1, choice2, turns);
     }
   };
   // bomb function
@@ -165,12 +164,6 @@ function App() {
     });
   };
 
-  // starts first game automatically
-
-  useEffect(() => {
-    shuffleCards();
-  }, []);
-
   return (
     <div className="App">
       <GameOverModal
@@ -179,10 +172,10 @@ function App() {
         errors={errorCounter}
         matches={matches}
         bomb={bomb}
+        cards={cards}
       />
       <h1>Pokemon Pairs!</h1>
       <button onClick={shuffleCards}>New Game</button>
-      {/* <p>Turns : {turns}</p> */}
       <div className="card-grid">
         {cards.map((card) => (
           <Card
