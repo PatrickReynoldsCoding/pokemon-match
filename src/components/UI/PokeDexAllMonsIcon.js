@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./PokeDexModal.css";
+import "./CSS/PokeDexModal.css";
 
 export default function PokeDexAllMonsIcon(props) {
   return (
-    <div className="">
-      <img className="icon" src={props.image} alt="card front" />
+    <div className={props.caught ? "caught" : "not-caught"}>
+      <img className="pokedex-icon" src={props.image} alt="card front" />
     </div>
   );
 }

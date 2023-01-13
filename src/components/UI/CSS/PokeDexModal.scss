@@ -1,0 +1,100 @@
+.pokedex-modal-container {
+  height: 95%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  right: 8%;
+  justify-content: baseline;
+  align-items: flex-end;
+}
+
+/* Pokedex body */
+.pokedex-modal-wrapper {
+  display: flex;
+  position: relative;
+
+  top: 5%;
+  height: 100%;
+  width: 100%;
+  max-width: 700px;
+  background-color: #ff0000;
+  border: 9px solid #840606;
+  z-index: 2;
+}
+
+.pokedex-body-top {
+  display: flex;
+  position: absolute;
+  background-color: yellow;
+  height: 16%;
+  width: 100%;
+
+  // buttons
+  .big-button {
+    background-color: #2600ff;
+    height: 5em;
+    width: 5em;
+    margin-left: 10%;
+    align-self: center;
+    border-radius: 100%;
+    border: 8px solid rgb(255, 255, 255);
+  }
+}
+
+.pokedex-body-right {
+  position: absolute;
+  background-color: green;
+  height: 100%;
+  width: 10%;
+  margin-left: 90%;
+  align-self: flex-end;
+}
+/* Pokedex screen */
+.pokedex-screen {
+  background-color: green;
+  height: 20%;
+  width: 85%;
+}
+
+.all-mons-wrapper {
+  border: 3px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 0.2% 0.2%;
+  width: 85%;
+}
+
+.pokedex-icon {
+  border: 3px solid black;
+  border-radius: 5%;
+  background-color: white;
+  height: auto;
+  width: 60%;
+}
+
+.pokedex-icon .caught {
+  filter: brightness(0.1);
+}
+
+img .not-caught {
+  /* *** make black if pokemon isnt caught */
+}
+
+/* Animation */
+.slide-from-left {
+  animation: slide-from-left 1s ease-out;
+}
+@keyframes slide-from-left {
+  0% {
+    transform: translateX(-2000px);
+  }
+  60% {
+    transform: translateX(30px);
+  }
+  80% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

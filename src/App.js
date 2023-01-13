@@ -7,6 +7,9 @@ import GameOverModal from "./components/UI/GameOverModal";
 import PokedexModal from "./components/UI/PokeDexModal";
 
 function App() {
+  // Replace this with something that saves to cookies
+  const [allMons, setAllMons] = useState([]);
+
   const [cards, setCards] = useState([]);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
@@ -38,7 +41,7 @@ function App() {
     setBomb(0);
     setTimeout(() => {
       gameStartCardFlipper();
-    }, 1000);
+    }, 5000);
   };
 
   const sixRandomMons = (pokemonArrayToFill) => {
@@ -95,6 +98,8 @@ function App() {
   // starts first game automatically
   useEffect(() => {
     shuffleCards(sixChosenMons, usedPokemon);
+    let newMonsList = pullAllMons();
+    setAllMons(newMonsList);
   }, []);
 
   //review choices
@@ -165,9 +170,36 @@ function App() {
     });
   };
 
+  // pokedex
+  const pullAllMons = () => {
+    // ** there must be a better way to pull images from a folder right?
+    // ** a json of the cards with caught prop should be saved to each users cookies
+    let allMons = [];
+    // ** this is messy
+    let i = 1;
+
+    while (i < 151) {
+      let currentId = i;
+      if (currentId.toString().length === 3) currentId = currentId.toString();
+      if (currentId.toString().length === 2) currentId = `0${currentId}`;
+      if (currentId.toString().length === 1) currentId = `00${currentId}`;
+
+      allMons.push({
+        src: `/card_images/${currentId}.png`,
+        caught: false,
+      });
+
+      i++;
+    }
+
+    return allMons;
+  };
+
+  console.log(allMons);
+
   return (
     <div className="App">
-      <PokedexModal open={true} />
+      <PokedexModal open={true} pullAllMons={pullAllMons} />
       <GameOverModal
         open={isGameOver}
         score={matches * 3 - errorCounter}

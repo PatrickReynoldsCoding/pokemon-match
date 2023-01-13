@@ -32,7 +32,7 @@
   font-size: 80%;
 }
 .bounce-from-top {
-  animation: bounce 1s ease;
+  animation: bounce-from-top 1s ease;
 }
 @keyframes bounce-from-top {
   0% {
