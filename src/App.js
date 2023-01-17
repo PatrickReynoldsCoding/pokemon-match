@@ -176,7 +176,7 @@ function App() {
         matches={matches}
         bomb={bomb}
       />
-      <h1>Pokemon Pairs!</h1>
+      <h1>Pokemon Match!</h1>
       <button onClick={shuffleCards}>New Game</button>
       {/* <p>Turns : {turns}</p> */}
       <div className="card-grid">
