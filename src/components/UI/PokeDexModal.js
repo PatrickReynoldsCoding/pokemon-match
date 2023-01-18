@@ -12,9 +12,18 @@ export default function PokedexModal(props) {
       <div className="pokedex-modal-wrapper slide-from-left">
         <div className="pokedex-body-top">
           <div className="big-button"></div>
-          <div className="small-button-1"></div>
-          <div className="small-button-2"></div>
-          <div className="small-button-3"></div>
+          <div
+            className="small-button"
+            style={{ backgroundColor: "rgb(181,48,63)" }}
+          ></div>
+          <div
+            className="small-button"
+            style={{ backgroundColor: "rgb(244,246,71)" }}
+          ></div>
+          <div
+            className="small-button"
+            style={{ backgroundColor: "rgb(93,191,117)" }}
+          ></div>
         </div>
         <div className="pokedex-body-right"></div>
         {/* <div className="pokedex-screen">

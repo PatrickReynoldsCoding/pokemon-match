@@ -1,5 +1,5 @@
 .pokedex-modal-container {
-  height: 95%;
+  height: 100%;
   width: 100%;
   position: absolute;
   display: flex;
@@ -12,7 +12,6 @@
 .pokedex-modal-wrapper {
   display: flex;
   position: relative;
-
   top: 5%;
   height: 100%;
   width: 100%;
@@ -25,19 +24,43 @@
 .pokedex-body-top {
   display: flex;
   position: absolute;
+  align-items: center;
   background-color: yellow;
   height: 16%;
+
   width: 100%;
+  clip-path: polygon(
+    0% 0%,
+    0% 0%,
+    100% 0%,
+    100% 0%,
+    100% 12%,
+    100% 12%,
+    81% 12%,
+    81% 12%,
+    40% 100%,
+    0% 100%,
+    0% 25%
+  );
 
   // buttons
   .big-button {
     background-color: #2600ff;
-    height: 5em;
-    width: 5em;
+    height: 100px;
+    width: 100px;
     margin-left: 10%;
     align-self: center;
     border-radius: 100%;
     border: 8px solid rgb(255, 255, 255);
+  }
+  .small-button {
+    height: 20px;
+    width: 20px;
+    margin: 1% 1% 0 0;
+    align-self: flex-start;
+    border-radius: 100%;
+    border: 1px solid black;
+    gap: 1%;
   }
 }
 
