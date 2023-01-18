@@ -218,7 +218,10 @@ function App() {
         bomb={bomb}
         cards={cards}
       />
-      <h1>Pokemon Pairs!</h1>
+
+   
+
+      <h1>Pokemon Match!</h1>
       <button onClick={togglePokedex}>pokedex</button>
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
