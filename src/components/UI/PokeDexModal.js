@@ -11,10 +11,9 @@ export default function PokedexModal(props) {
     <div className="pokedex-modal-container">
       <div className="pokedex-modal-wrapper slide-from-left">
         <div className="pokedex-img">
-          {/* <div className="pokedex-screen">
-   
-        </div>
-        <PokeDexAllMons pullAllMons={props.pullAllMons} /> */}
+          <div className="pokedex-screen">
+            <PokeDexAllMons pullAllMons={props.pullAllMons} />{" "}
+          </div>
         </div>
       </div>
     </div>
