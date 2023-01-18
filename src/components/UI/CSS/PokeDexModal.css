@@ -1,0 +1,138 @@
+.pokedex-modal-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  right: 2%;
+  justify-content: baseline;
+  align-items: flex-end;
+}
+
+/* Pokedex body */
+.pokedex-modal-wrapper {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 5%;
+  height: calc(1.7 * 464px);
+  width: calc(1.7 * 294px);
+  z-index: 2;
+  /* Pokedex screen */
+}
+.pokedex-modal-wrapper .pokedex-img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: purple;
+  background-size: contain;
+  background-image: url(../../../../public/img/pokedex.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+.pokedex-modal-wrapper .pokedex-screen {
+  display: grid;
+  justify-content: center;
+  background-color: #ef4a49;
+  border: 3px solid rgb(49, 56, 57);
+  border-radius: 5%;
+  margin: 36% 0 0 5%;
+  height: 75%;
+  width: 78%;
+}
+.pokedex-modal-wrapper .all-mons-wrapper {
+  border: 3px solid black;
+  display: grid;
+  background-color: green;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 0.2% 0.2%;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+.pokedex-modal-wrapper .pokedex-icon {
+  border: 3px solid black;
+  border-radius: 5%;
+  background-color: white;
+  height: auto;
+  width: 60%;
+}
+.pokedex-modal-wrapper .pokedex-icon .caught {
+  filter: brightness(0.1);
+}
+.pokedex-modal-wrapper img .not-caught {
+  /* *** make black if pokemon isnt caught */
+}
+
+/* Animation */
+.slide-from-left {
+  -webkit-animation: slide-from-left 1s ease-in;
+          animation: slide-from-left 1s ease-in;
+}
+
+@-webkit-keyframes slide-from-left {
+  0% {
+    transform: translateX(-2000px);
+  }
+  60% {
+    transform: translateX(30px);
+  }
+  80% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-from-left {
+  0% {
+    transform: translateX(-2000px);
+  }
+  60% {
+    transform: translateX(30px);
+  }
+  80% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.slide-out-from-center {
+  -webkit-animation: slide-out-from-center 1s ease-out;
+          animation: slide-out-from-center 1s ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes slide-out-from-center {
+  0% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: translateX(0px);
+  }
+  80% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(-2000px);
+  }
+}
+
+@keyframes slide-out-from-center {
+  0% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: translateX(0px);
+  }
+  80% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(-2000px);
+  }
+}/*# sourceMappingURL=PokeDexModal.css.map */

@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 export default function ScoreStars(props) {
   const [stars, setStars] = useState(null);
   const starCalculator = (score) => {
-    if (score > 18 && score <= 20) return 3;
-    if (score > 15 && score <= 17) return 2;
-    if (score >= 10 && score <= 15) return 1;
-    if (score < 10) return 0;
+    if (score > 17 && score <= 18) return 3;
+    if (score >= 9 && score <= 17) return 2;
+    if (score >= 3 && score <= 8) return 1;
+    if (score < 3) return 0;
   };
   useEffect(() => {
     setStars(starCalculator(props.score));

@@ -4,27 +4,49 @@ import "./App.css";
 //components
 import Card from "./components/GameAssets/Card";
 import GameOverModal from "./components/UI/GameOverModal";
+import PokedexModal from "./components/UI/PokeDexModal";
 
 function App() {
+  // Replace this with something that saves to cookies
+  const [allMons, setAllMons] = useState([]);
+
   const [cards, setCards] = useState([]);
-  // const [turns, setTurns] = useState(0);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [cardEnabler, setCardEnabler] = useState(true);
   const [isGameOver, setIsGameOver] = useState(false);
-
   const [matches, setMatches] = useState(0);
   const [errorCounter, setErrorCounter] = useState(0);
   const [bomb, setBomb] = useState(false);
+  const [pokedex, setPokedex] = useState(false);
+
+  let sixChosenMons = [];
+  let usedPokemon = [];
 
   // shuffle cards for new game
-  // random pokemon number generator selector
   const shuffleCards = () => {
-    let sixChosenMons = [];
-    let usedPokemon = [];
-    let i = 1;
     setIsGameOver(false);
+    sixRandomMons(sixChosenMons);
+    let fullDeck = [...sixChosenMons, ...sixChosenMons];
+    bombAdder(fullDeck);
 
+    fullDeck
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }));
+    // console.log(fullDeck);
+    setChoice1(null);
+    setChoice2(null);
+    setCards(fullDeck);
+    setErrorCounter(0);
+    setMatches(0);
+    setBomb(0);
+    setTimeout(() => {
+      gameStartCardFlipper();
+    }, 5000);
+  };
+
+  const sixRandomMons = (pokemonArrayToFill) => {
+    let i = 1;
     while (sixChosenMons.length < 6) {
       //random number selector between 1-151
       const randPokeSelector = () => {
@@ -46,33 +68,18 @@ function App() {
       i++;
       // console.log(sixChosenMons);
     }
-    let fullDeck = [...sixChosenMons, ...sixChosenMons];
-    // add 4 bombs
+  };
+
+  // add 4 bombs
+  const bombAdder = (deck) => {
     for (let i = 0; i < 4; i++) {
-      fullDeck.push({
+      deck.push({
         src: `/card_images/Teamrockettrio.png`,
         matched: true,
         bomb: true,
       });
     }
-    // console.log(fullDeck);
-
-    fullDeck
-      .sort(() => Math.random() - 0.5)
-      .map((card) => ({ ...card, id: Math.random() }));
-    // console.log(fullDeck);
-    setChoice1(null);
-    setChoice2(null);
-    setCards(fullDeck);
-    setErrorCounter(0);
-    setMatches(0);
-    setBomb(0);
-    // setTurns(0);
-    setTimeout(() => {
-      gameStartCardFlipper();
-    }, 1000);
   };
-
   // remember choice
   const handleChoice = (card) => {
     choice1 ? setChoice2(card) : setChoice1(card);
@@ -82,20 +89,35 @@ function App() {
       }, 500);
     }
   };
+  // Game Over function
+  const gameOver = () => {
+    setTimeout(() => {
+      setIsGameOver(true);
+    }, 1000);
+  };
+
+  // starts first game automatically
+  useEffect(() => {
+    shuffleCards(sixChosenMons, usedPokemon);
+    let newMonsList = pullAllMons();
+    setAllMons(newMonsList);
+  }, []);
 
   //review choices
   useEffect(() => {
     reviewChoices(choice1, choice2);
   }, [choice1, choice2]);
 
+  //End Game after 6 matches are made
+  useEffect(() => {
+    if (matches === 6) gameOver(true);
+  }, [matches]);
+
   const reviewChoices = (choice1, choice2) => {
     if (choice1 && choice2) {
       bombCheck(choice1, choice2);
       matchChecker(choice1, choice2);
       setTimeout(() => clearChoices(choice1, choice2), 1000);
-      console.log(errorCounter);
-      // setTurns(turns + 1);
-      // console.log(choice1, choice2, turns);
     }
   };
   // bomb function
@@ -108,16 +130,6 @@ function App() {
     }
   };
 
-  // Game Over function
-  const gameOver = () => {
-    setTimeout(() => {
-      setIsGameOver(true);
-    }, 1000);
-  };
-
-  useEffect(() => {
-    if (matches === 6) gameOver(true);
-  }, [matches]);
   //match checker
   const matchChecker = (choice1, choice2) => {
     if (choice1 && choice2) {
@@ -141,8 +153,6 @@ function App() {
     }
   };
 
-  console.log(matches);
-
   // clear choices
   const clearChoices = (choice1, choice2) => {
     if (choice1 && choice2 !== null) {
@@ -161,28 +171,63 @@ function App() {
     });
   };
 
-  // starts first game automatically
+  // pokedex
 
-  useEffect(() => {
-    shuffleCards();
-  }, []);
+  const togglePokedex = () => {
+    pokedex === false ? setPokedex(true) : setPokedex(false);
+  };
+
+  const pullAllMons = () => {
+    // ** there must be a better way to pull images from a folder right?
+    // ** a json of the cards with caught prop should be saved to each users cookies
+    let allMons = [];
+    // ** this is messy
+    let i = 1;
+
+    while (i < 151) {
+      let currentId = i;
+      if (currentId.toString().length === 3) currentId = currentId.toString();
+      if (currentId.toString().length === 2) currentId = `0${currentId}`;
+      if (currentId.toString().length === 1) currentId = `00${currentId}`;
+
+      allMons.push({
+        src: `/card_images/${currentId}.png`,
+        caught: false,
+      });
+
+      i++;
+    }
+
+    return allMons;
+  };
+
+  console.log(allMons);
 
   return (
     <div className="App">
+      <PokedexModal
+        open={pokedex}
+        togglePokedex={togglePokedex}
+        pullAllMons={pullAllMons}
+      />
       <GameOverModal
         open={isGameOver}
-        score={bomb ? 20 - errorCounter : 20 - errorCounter - 11 + matches}
+        score={matches * 3 - errorCounter}
         errors={errorCounter}
         matches={matches}
         bomb={bomb}
+        cards={cards}
       />
+
+   
+
       <h1>Pokemon Match!</h1>
+      <button onClick={togglePokedex}>pokedex</button>
       <button onClick={shuffleCards}>New Game</button>
-      {/* <p>Turns : {turns}</p> */}
       <div className="card-grid">
         {cards.map((card) => (
           <Card
-            key={Math.random()}
+            key={card.id}
             handleChoice={handleChoice}
             card={card}
             flipped={card === choice1 || card === choice2 || card.matched}
