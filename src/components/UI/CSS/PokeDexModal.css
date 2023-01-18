@@ -67,8 +67,8 @@
 
 /* Animation */
 .slide-from-left {
-  -webkit-animation: slide-from-left 1s ease-out;
-          animation: slide-from-left 1s ease-out;
+  -webkit-animation: slide-from-left 1s ease-in;
+          animation: slide-from-left 1s ease-in;
 }
 
 @-webkit-keyframes slide-from-left {
@@ -98,5 +98,41 @@
   }
   100% {
     transform: translateX(0);
+  }
+}
+.slide-out-from-center {
+  -webkit-animation: slide-out-from-center 1s ease-out;
+          animation: slide-out-from-center 1s ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes slide-out-from-center {
+  0% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: translateX(0px);
+  }
+  80% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(-2000px);
+  }
+}
+
+@keyframes slide-out-from-center {
+  0% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: translateX(0px);
+  }
+  80% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(-2000px);
   }
 }/*# sourceMappingURL=PokeDexModal.css.map */
