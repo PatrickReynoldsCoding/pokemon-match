@@ -12,6 +12,7 @@ export default function PokedexModal(props) {
     setTransitionOut(!transitionOut);
     setTimeout(() => {
       props.togglePokedex();
+      setTransitionOut(false);
     }, 1500);
   };
 
