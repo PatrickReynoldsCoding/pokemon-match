@@ -6,9 +6,13 @@ import "./CSS/PokeDexModal.css";
 import PokeDexAllMons from "./PokeDexAllMons";
 
 export default function PokedexModal(props) {
+  const handleClick = () => {
+    props.togglePokedex();
+  };
+
   if (!props.open) return null;
   return (
-    <div className="pokedex-modal-container">
+    <div className="pokedex-modal-container" onClick={handleClick}>
       <div className="pokedex-modal-wrapper slide-from-left">
         <div className="pokedex-img">
           <div className="pokedex-screen">

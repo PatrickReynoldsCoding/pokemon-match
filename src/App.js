@@ -18,6 +18,7 @@ function App() {
   const [matches, setMatches] = useState(0);
   const [errorCounter, setErrorCounter] = useState(0);
   const [bomb, setBomb] = useState(false);
+  const [pokedex, setPokedex] = useState(false);
 
   let sixChosenMons = [];
   let usedPokemon = [];
@@ -171,6 +172,11 @@ function App() {
   };
 
   // pokedex
+
+  const togglePokedex = () => {
+    pokedex === false ? setPokedex(true) : setPokedex(false);
+  };
+
   const pullAllMons = () => {
     // ** there must be a better way to pull images from a folder right?
     // ** a json of the cards with caught prop should be saved to each users cookies
@@ -199,7 +205,11 @@ function App() {
 
   return (
     <div className="App">
-      <PokedexModal open={true} pullAllMons={pullAllMons} />
+      <PokedexModal
+        open={pokedex}
+        togglePokedex={togglePokedex}
+        pullAllMons={pullAllMons}
+      />
       <GameOverModal
         open={isGameOver}
         score={matches * 3 - errorCounter}
@@ -209,6 +219,7 @@ function App() {
         cards={cards}
       />
       <h1>Pokemon Pairs!</h1>
+      <button onClick={togglePokedex}>pokedex</button>
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
