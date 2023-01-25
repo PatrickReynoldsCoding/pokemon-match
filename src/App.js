@@ -222,7 +222,6 @@ function App() {
    
 
       <h1>Pokemon Match!</h1>
-      <button onClick={togglePokedex}>pokedex</button>
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
